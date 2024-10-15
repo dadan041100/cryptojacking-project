@@ -1,0 +1,73 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f3f4f6;
+    margin: 0;
+    padding: 20px;
+}
+
+h1 {
+    color: #333;
+    text-align: center;
+    margin-bottom: 20px; /* Added margin for better spacing */
+}
+
+.stats, .charts-container, .cpu-cores-container {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+h3 {
+    color: #0078D7;
+    margin-top: 0; /* Ensured no top margin for headings */
+}
+
+.chart {
+    margin-top: 10px;
+    position: relative; /* Changed to relative for better positioning */
+    height: 300px; /* Set a fixed height for charts to ensure consistency */
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    padding: 5px;
+    border-bottom: 1px solid #eaeaea;
+}
+
+li:last-child {
+    border-bottom: none;
+}
+
+li:hover {
+    background-color: #f1f1f1;
+}
+
+/* Quadrant Layout for Charts */
+.charts-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Two columns */
+    grid-template-rows: repeat(2, 1fr); /* Two rows */
+    gap: 20px; /* Increased space between charts for clarity */
+}
+
+.quadrant {
+    border: 1px solid #ccc; /* Optional: add a border to each chart */
+    padding: 10px; /* Optional: add some padding */
+    background-color: #f9f9f9; /* Optional: background color */
+    position: relative; /* Position relative for any absolute children */
+    overflow: hidden; /* Prevent overflow of child elements */
+}
+
+.cpu-cores-container {
+    margin-top: 20px; /* Added spacing to avoid overlap */
+    padding: 10px; /* Added padding for better appearance */
+    background-color: #fff; /* Consistent background color */
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1); /* Slight shadow for depth */
+}

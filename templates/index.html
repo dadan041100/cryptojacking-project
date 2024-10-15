@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <title>Cryptojacking Detection Dashboard</title>
+</head>
+<body>
+    <h1>Cryptojacking Detection Dashboard</h1>
+
+    <div class="stats">
+        <h3>System Stats:</h3>
+        <p>CPU Usage: <span id="cpuUsage">Loading...</span>%</p>
+        <p>GPU Usage: <span id="gpuUsage">Loading...</span>%</p>
+        <p>RAM Usage: <span id="ramUsage">Loading...</span>%</p>
+        <p>Network Sent: <span id="networkSent">Loading...</span> bytes</p>
+        <p>Network Received: <span id="networkRecv">Loading...</span> bytes</p>
+        <p>Logical Processors: <span id="logicalProcessors">Loading...</span></p>
+        <p>Physical Sockets: <span id="physicalSockets">Loading...</span></p>
+    </div>
+
+    <div>
+        <h3>Alerts:</h3>
+        <ul id="alerts">
+            <li>No alerts at this time</li>
+        </ul>
+    </div>
+
+    <div>
+        <h3>Currently Running Applications:</h3>
+        <ul id="runningApps">
+            <li>No applications using significant resources</li>
+        </ul>
+    </div>
+
+    <div class="charts-container">
+        <div class="chart quadrant" id="chart1">
+            <h3>CPU Usage Chart (Overall & Per Core):</h3>
+            <canvas id="cpuChart" width="150" height="75"></canvas>
+        </div>
+        <div class="chart quadrant" id="chart2">
+            <h3>GPU Usage Chart:</h3>
+            <canvas id="gpuChart" width="150" height="75"></canvas>
+        </div>
+        <div class="chart quadrant" id="chart3">
+            <h3>RAM Usage Chart:</h3>
+            <canvas id="ramChart" width="150" height="75"></canvas>
+        </div>
+        <div class="chart quadrant" id="chart4">
+            <h3>Network Usage Chart:</h3>
+            <canvas id="networkChart" width="150" height="75"></canvas>
+        </div>
+    </div>
+
+    <div class="cpu-cores-container">
+        <h3>CPU Usage Per Core:</h3>
+        <ul id="cpuCores"></ul> <!-- Added to display CPU core usage -->
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="{{ url_for('static', filename='scripts.js') }}"></script>
+</body>
+</html>
