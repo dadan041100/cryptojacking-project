@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <script src="{{ url_for('static', filename='scripts.js') }}" defer></script>
+    <title>Current Applications</title>
+</head>
+<body>
+    <div class="sidebar" id="sidebar">
+        <div class="hamburger" onclick="toggleSidebar()">&#9776;</div>
+        <nav id="sidebar-nav" class="hidden">
+            <ul>
+                <li><a href="{{ url_for('index') }}">Dashboard</a></li>
+                <li><a href="{{ url_for('current_applications') }}">Current Applications</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <div class="content">
+        <h3>Currently Running Applications:</h3>
+            <ul id="running-apps-list">
+                <li>No applications running</li>
+            </ul>
+
+        <footer>
+            <p>&copy; 2024 Your Company Name</p>
+        </footer>
+    </div>
+</body>
+</html>
