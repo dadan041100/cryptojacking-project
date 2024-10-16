@@ -154,7 +154,13 @@ def get_running_apps_cpu_and_network():
 def index():
     return render_template('index.html')
 
-@app.route('/current_applications')
+@app.route('/running_apps')
+def running_apps():
+    running_apps = get_running_apps_cpu_and_network()
+    return jsonify(running_apps)
+
+
+@app.route('/current-applications')
 def current_applications():
     return render_template('current_applications.html')
 
@@ -163,6 +169,28 @@ def current_applications():
 def get_stats():
     global system_stats  # Access the global system_stats variable
     return jsonify(system_stats)  # Return the current stats as JSON
+
+@app.route('/scan')
+def scan_device():
+    # Implement scanning logic here
+    overall_cpu_usage = psutil.cpu_percent(interval=1)
+    gpus = GPUtil.getGPUs()
+    gpu_usage = gpus[0].load * 100 if gpus else 0
+    ram_usage = psutil.virtual_memory().percent
+
+    alerts = []
+    if overall_cpu_usage > THRESHOLD_CPU:
+        alerts.append("High CPU usage detected!")
+    if gpu_usage > THRESHOLD_GPU:
+        alerts.append("High GPU usage detected!")
+    if ram_usage > THRESHOLD_RAM:
+        alerts.append("High RAM usage detected!")
+
+    # Return the scan results
+    return jsonify({
+        'cryptojacking_detected': bool(alerts),
+        'alerts': alerts
+    })
 
 if __name__ == '__main__':
     threading.Thread(target=monitor_system_stats, daemon=True).start()

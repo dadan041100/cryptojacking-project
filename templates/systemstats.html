@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <title>System Stats Dashboard</title>
+</head>
+<body>
+    <div class="container">
+        <h1>System Stats Dashboard</h1>
+        <div id="stats">
+            <h2>CPU Usage</h2>
+            <div id="cpu-usage-quad">
+                <div class="quadrant">
+                    <h3>Core 1</h3>
+                    <p id="core1-usage">Loading...</p>
+                </div>
+                <div class="quadrant">
+                    <h3>Core 2</h3>
+                    <p id="core2-usage">Loading...</p>
+                </div>
+                <div class="quadrant">
+                    <h3>Core 3</h3>
+                    <p id="core3-usage">Loading...</p>
+                </div>
+                <div class="quadrant">
+                    <h3>Core 4</h3>
+                    <p id="core4-usage">Loading...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='systemscript.js') }}"></script>
+</body>
+</html>

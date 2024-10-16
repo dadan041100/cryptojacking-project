@@ -1,8 +1,13 @@
-function toggleSidebar() {
-    const sidebar = document.getElementById('sidebar');
-    sidebar.classList.toggle('open'); // Toggle the 'open' class to show/hide the sidebar
-}
+document.addEventListener("DOMContentLoaded", function() {
+    fetchStats();
 
+    // Add event listener to the scan button
+    document.getElementById("scan-button").addEventListener("click", function() {
+        scanDevice();
+    });
+
+    setInterval(fetchStats, 1000); // Fetch stats every second
+});
 
 const cpuChartCtx = document.getElementById('cpuChart').getContext('2d');
 const gpuChartCtx = document.getElementById('gpuChart').getContext('2d');
@@ -11,27 +16,6 @@ const networkChartCtx = document.getElementById('networkChart').getContext('2d')
 const diskChartCtx = document.getElementById('diskChart').getContext('2d');
 
 let cpuChart, gpuChart, ramChart, networkChart, diskChart;
-
-const updateRunningApps = (runningApps) => {
-    // Get the element where the running applications will be displayed
-    const runningAppsList = document.getElementById('running-apps-list');
-
-    // Clear the existing list
-    runningAppsList.innerHTML = '';
-
-    // Check if any running applications are returned
-    if (runningApps.length === 0) {
-        runningAppsList.innerHTML = '<li>No applications running</li>';
-        return;
-    }
-
-    // Create a list item for each running application
-    runningApps.forEach(app => {
-        const listItem = document.createElement('li');
-        listItem.textContent = `${app.name} - CPU: ${app.cpu_percent}% | RAM: ${app.ram_usage_gb.toFixed(2)} GB | Network: ${app.network_sent_mb.toFixed(2)} MB sent, ${app.network_recv_mb.toFixed(2)} MB received`; // Show name, CPU, RAM, and Network usage
-        runningAppsList.appendChild(listItem); // Add the list item to the running apps list
-    });
-};
 
 const updateCharts = (data) => {
     // Update CPU Usage Chart
@@ -222,13 +206,69 @@ const fetchStats = async () => {
         document.getElementById('logicalProcessors').textContent = data.cpu_info.logical_processors;  // Updated line
         document.getElementById('physicalSockets').textContent = data.cpu_info.physical_sockets;      // Updated line
 
-        // Update the running applications
-        updateRunningApps(data.running_apps); // New line to update running apps
         updateCharts(data);
     } catch (error) {
         console.error('Error fetching stats:', error);
     }
 };
 
-// Fetch stats every second
-setInterval(fetchStats, 1000);
+// Function to toggle sidebar visibility
+function toggleSidebar() {
+    const sidebar = document.getElementById('sidebar');
+    sidebar.classList.toggle('open'); // Toggle the 'open' class to show/hide the sidebar
+}
+
+// Function to display a pop-up message with a backdrop
+function showPopup(message, isError = false) {
+    // Create backdrop
+    const backdrop = document.createElement('div');
+    backdrop.className = 'popup-backdrop';
+    document.body.appendChild(backdrop);
+
+    // Create pop-up message
+    const popup = document.createElement('div');
+    popup.className = 'popup';
+    popup.textContent = message;
+    if (isError) {
+        popup.style.color = 'red'; // Red color for error messages
+    } else {
+        popup.style.color = 'green'; // Green color for success messages
+    }
+    document.body.appendChild(popup);
+
+    // Center the pop-up
+    popup.style.position = 'fixed';
+    popup.style.top = '50%';
+    popup.style.left = '50%';
+    popup.style.transform = 'translate(-50%, -50%)';
+    popup.style.zIndex = '1002';
+    popup.style.padding = '30px'; // Increased padding
+    popup.style.backgroundColor = 'white';
+    popup.style.border = '1px solid black';
+    popup.style.borderRadius = '10px'; // Rounded corners
+    popup.style.fontSize = '18px'; // Larger font size
+
+    // Remove the pop-up and backdrop after 5 seconds
+    setTimeout(() => {
+        document.body.removeChild(popup);
+        document.body.removeChild(backdrop);
+    }, 5000); // Show for 5 seconds
+}
+
+// Scan the device for cryptojacking
+function scanDevice() {
+    fetch('/scan')
+        .then(response => response.json())
+        .then(data => {
+            if (data.cryptojacking_detected) {
+                const alerts = data.alerts.join('\n'); // Join alerts into a single string
+                showPopup(`Cryptojacking detected!${alerts ? '\n' + alerts : ''}`, true);
+            } else {
+                showPopup('No cryptojacking detected.');
+            }
+        })
+        .catch(error => {
+            console.error('Error scanning device:', error);
+            showPopup('Error scanning device.', true);
+        });
+}

@@ -1,0 +1,90 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 20px;
+    background-color: #1e1e1e; /* Dark background */
+    color: #ffffff; /* Light text color */
+}
+
+.sidebar {
+    position: fixed;
+    left: -250px; /* Initially hide the sidebar */
+    width: 250px;
+    height: 100%;
+    background-color: #333;
+    transition: left 0.3s ease;
+    z-index: 1000; /* Ensure it's above other content */
+}
+
+.sidebar.open {
+    left: 0; /* Show the sidebar when open */
+}
+
+.hamburger {
+    font-size: 30px; /* Adjust size as needed */
+    cursor: pointer;
+    color: white;
+    position: fixed; /* Keep it fixed at the top left */
+    top: 20px;
+    left: 20px;
+    z-index: 1001; /* Ensure it's above the sidebar */
+}
+
+nav {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    color: white;
+}
+
+nav ul {
+    list-style-type: none; /* Remove bullet points */
+    padding: 0; /* Remove padding */
+}
+
+nav ul li {
+    margin: 10px 0; /* Spacing between links */
+}
+
+nav ul li a {
+    color: white; /* Link color */
+    text-decoration: none; /* Remove underline */
+}
+
+nav ul li a:hover {
+    text-decoration: underline; /* Add underline on hover */
+}
+
+/* New styles for the content section */
+.content {
+    margin-left: 270px; /* Add margin to prevent overlap with the sidebar */
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Add responsive design */
+@media (max-width: 768px) {
+    .sidebar {
+        width: 200px; /* Adjust width for mobile */
+    }
+}
+
+h3 {
+    text-align: left;
+    margin-top: 1in; /* Space of 1 inch from the top */
+    margin-bottom: 20px;
+    color: #ffffff; /* Light color for heading */
+}
+
+#running-apps-list {
+    margin-top: 0; /* Remove extra space above the list */
+    padding-left: 40px; /* Indentation for the list */
+    list-style-type: none; /* Ensure no bullet points */
+}
+
+#running-apps-list li {
+    margin-bottom: 10px; /* Space between list items */
+}
+
+/* Other existing styles remain unchanged... */
+        

@@ -1,0 +1,21 @@
+.container {
+    text-align: center;
+    margin: 20px;
+}
+
+#cpu-usage-quad {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+}
+
+.quadrant {
+    border: 1px solid #ccc;
+    padding: 20px;
+    width: 20%;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+h2 {
+    margin-bottom: 10px;
+}
