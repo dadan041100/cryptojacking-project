@@ -1,21 +1,23 @@
 import time
 import threading
 
-def cpu_miner():
+def cpu_miner(intensity=1000000):
     """Simulate cryptojacking by performing CPU-intensive calculations."""
     print("Starting simulated cryptojacking...")
     while True:
-        # Simulate heavy CPU usage by performing calculations
-        sum([i**2 for i in range(10000)])  # Adjust the range for more or less intensity
+        sum([i**2 for i in range(intensity)])  
 
-# Run the miner in a separate thread
-miner_thread = threading.Thread(target=cpu_miner)
-miner_thread.daemon = True  # Daemon thread will exit when the main program exits
-miner_thread.start()
+def start_miner():
+    miner_thread = threading.Thread(target=cpu_miner, args=(1000000,))  
+    miner_thread.daemon = True  
+    miner_thread.start()
+    return miner_thread
 
-# Keep the main program running
-try:
-    while True:
-        time.sleep(1)
-except KeyboardInterrupt:
-    print("Stopping simulated cryptojacking.")
+
+if __name__ == "__main__":
+    try:
+        start_miner()
+        while True:
+            time.sleep(1)  
+    except KeyboardInterrupt:
+        print("Stopping simulated cryptojacking.")

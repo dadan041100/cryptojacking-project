@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"></script>
-    <script src="{{ url_for('static', filename='scripts.js') }}" defer></script>
+    <script src="{{ url_for('static', filename='js/scripts.js') }}" defer></script>
     <title>Cryptojacking Detection Dashboard</title>
 </head>
 <body>
@@ -29,6 +29,7 @@
             <div class="stats-container">
                 <div class="stats-column">
                     <p>CPU Usage: <span id="cpuUsage">Loading...</span>%</p>
+                    <p>CPU Core 0 Usage: <span id="cpuCore0Usage">Loading...</span>%</p>
                     <p>GPU Usage: <span id="gpuUsage">Loading...</span>%</p>
                     <p>RAM Usage: <span id="ramUsage">Loading...</span>%</p>
                     <p>Logical Processors: <span id="logicalProcessors">Loading...</span></p>
@@ -72,11 +73,9 @@
                 <canvas id="diskChart"></canvas>
             </div>
         </div>
-        <button id="scan-button">Scan Device</button>
-            <div id="scan-results" class="hidden"></div>
         </div>
         <footer>
-            <p>&copy; 2024 Your Company Name</p>
+            <p>&copy; 2024 INFOSEC SS221</p>
         </footer>
     </div>
 </body>

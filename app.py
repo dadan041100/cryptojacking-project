@@ -10,13 +10,13 @@ previous_network_stats = {'sent': 0, 'recv': 0, 'timestamp': time.time()}
 previous_disk_io = psutil.disk_io_counters()
 system_stats = {}
 
-THRESHOLD_CPU = 80
+THRESHOLD_CPU = 70
 THRESHOLD_GPU = 70
 THRESHOLD_RAM = 80
-THRESHOLD_NETWORK_SENT = 500000  # bytes
-THRESHOLD_NETWORK_RECV = 500000  # bytes
-THRESHOLD_DISK_IO_READ = 1048576  # 1 MB in bytes
-THRESHOLD_DISK_IO_WRITE = 1048576  # 1 MB in bytes
+THRESHOLD_NETWORK_SENT = 500000  
+THRESHOLD_NETWORK_RECV = 500000  
+THRESHOLD_DISK_IO_READ = 1048576  
+THRESHOLD_DISK_IO_WRITE = 1048576  
 
 def bytes_to_mbps(bytes_value):
     if bytes_value >= 1024 * 1024:
@@ -44,6 +44,8 @@ def monitor_system_stats():
 
         previous_disk_io = current_disk_io
 
+        print(f"CPU: {overall_cpu_usage}, GPU: {gpu_usage}, RAM: {ram_usage}")
+
         current_time = time.time()
         time_interval = current_time - previous_network_stats['timestamp']
 
@@ -66,7 +68,6 @@ def monitor_system_stats():
         alerts = []
         running_apps = get_running_apps_cpu_and_network()
 
-        # Check for alerts based on thresholds
         if overall_cpu_usage > THRESHOLD_CPU:
             alerts.append("High CPU usage detected!")
         if gpu_usage > THRESHOLD_GPU:
@@ -82,8 +83,7 @@ def monitor_system_stats():
 
         core_usages = get_cpu_cores_usage()
 
-        # Add CPU info to system_stats
-        cpu_info = get_cpu_info()  # Make sure to get CPU info here
+        cpu_info = get_cpu_info()  
 
         system_stats = {
             'cpu_usage': overall_cpu_usage,
@@ -96,10 +96,11 @@ def monitor_system_stats():
             'alerts': alerts,
             'running_apps': running_apps,
             'cpu_cores': core_usages,
-            'cpu_info': cpu_info,  # Add CPU info to stats
+            'cpu_info': cpu_info,  
             'running_apps': running_apps
         }
 
+        
 
 def get_cpu_cores_usage():
     return psutil.cpu_percent(percpu=True)
@@ -116,7 +117,7 @@ def get_cpu_info():
 def get_app_ram_usage(pid):
     try:
         process = psutil.Process(pid)
-        ram_usage = process.memory_info().rss / (1024 * 1024 * 1024)  # Convert bytes to GB
+        ram_usage = process.memory_info().rss / (1024 * 1024 * 1024)  
         return ram_usage
     except (psutil.NoSuchProcess, psutil.AccessDenied):
         return 0
@@ -126,14 +127,13 @@ def get_running_apps_cpu_and_network():
     for proc in psutil.process_iter(['pid', 'name', 'cpu_percent']):
         try:
             proc_info = proc.as_dict(attrs=['pid', 'name', 'cpu_percent'])
-            ram_usage = get_app_ram_usage(proc_info['pid'])  # Add RAM usage to process info
+            ram_usage = get_app_ram_usage(proc_info['pid'])  
 
-            # Get network usage (sent and received bytes)
             net_io = proc.io_counters() if proc.io_counters() else (0, 0)
-            proc_info['bytes_sent'] = net_io[0]  # bytes sent
-            proc_info['bytes_recv'] = net_io[1]  # bytes received
+            proc_info['bytes_sent'] = net_io[0]  
+            proc_info['bytes_recv'] = net_io[1]  
 
-            proc_info['ram_usage_gb'] = ram_usage  # Add RAM usage to process info
+            proc_info['ram_usage_gb'] = ram_usage  
             apps.append(proc_info)
         except (psutil.NoSuchProcess, psutil.AccessDenied, AttributeError):
             continue
@@ -142,9 +142,9 @@ def get_running_apps_cpu_and_network():
         {
             "name": app['name'],
             "cpu_percent": app['cpu_percent'],
-            "network_sent_mb": app['bytes_sent'] / (1024 * 1024),  # Convert bytes to MB
-            "network_recv_mb": app['bytes_recv'] / (1024 * 1024),  # Convert bytes to MB
-            "ram_usage_gb": app['ram_usage_gb']  # Include RAM usage in the output
+            "network_sent_mb": app['bytes_sent'] / (1024 * 1024),  
+            "network_recv_mb": app['bytes_recv'] / (1024 * 1024),  
+            "ram_usage_gb": app['ram_usage_gb']  
         }
         for app in apps
     ]
@@ -167,29 +167,32 @@ def current_applications():
 
 @app.route('/stats')
 def get_stats():
-    global system_stats  # Access the global system_stats variable
-    return jsonify(system_stats)  # Return the current stats as JSON
+    global system_stats  
+    return jsonify(system_stats)  
 
 @app.route('/scan')
 def scan_device():
-    # Implement scanning logic here
     overall_cpu_usage = psutil.cpu_percent(interval=1)
     gpus = GPUtil.getGPUs()
     gpu_usage = gpus[0].load * 100 if gpus else 0
     ram_usage = psutil.virtual_memory().percent
+    
+    cpu_core_0_usage = psutil.cpu_percent(interval=1, percpu=True)[0]  
 
     alerts = []
     if overall_cpu_usage > THRESHOLD_CPU:
         alerts.append("High CPU usage detected!")
+    if cpu_core_0_usage > THRESHOLD_CPU:  
+        alerts.append("High CPU usage on Core 0 detected!")
     if gpu_usage > THRESHOLD_GPU:
         alerts.append("High GPU usage detected!")
     if ram_usage > THRESHOLD_RAM:
         alerts.append("High RAM usage detected!")
 
-    # Return the scan results
     return jsonify({
         'cryptojacking_detected': bool(alerts),
-        'alerts': alerts
+        'alerts': alerts,
+        'cpu_core_0_usage': cpu_core_0_usage  
     })
 
 if __name__ == '__main__':
