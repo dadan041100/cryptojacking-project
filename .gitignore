@@ -1,0 +1,47 @@
+# Ignore Python bytecode files
+*.pyc
+*.pyo
+*.pyd
+__pycache__/
+
+# Ignore virtual environment directory
+venv/
+
+# Ignore environment variables
+.env
+
+# Ignore SQLite database files
+*.sqlite3
+*.db
+
+# Ignore logs and local Flask configuration files
+*.log
+instance/
+
+# Ignore compiled files
+*.so
+
+# Ignore IDE specific files
+.vscode/
+.idea/
+*.iml
+
+# Ignore MacOS system files
+.DS_Store
+
+# Ignore pyenv
+.python-version
+
+# Ignore Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# Ignore coverage reports
+htmlcov/
+.coverage
+.tox/
+nosetests.xml
+coverage.xml
+
+# Ignore other caches and Python tools
+pip-log.txt
+pip-delete-this-directory.txt
