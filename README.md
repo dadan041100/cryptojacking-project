@@ -73,8 +73,8 @@ To run this project locally, you need the following installed:
    https://127.0.0.1:5000
    ```
 
-### Contributing
-# Contributions are welcome! If you find any issues or have suggestions, feel free to open an issue or submit a pull request.
+# Contributing
+## Contributions are welcome! If you find any issues or have suggestions, feel free to open an issue or submit a pull request.
 
 - Fork the repository
 - Create a new branch (git checkout -b feature-branch)
