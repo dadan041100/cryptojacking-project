@@ -103,8 +103,8 @@ To run this project locally, you need the following installed:
 
 ## NOTE: You may configure the duration and number of concurrent operations of sample_morpheus.py to your liking. 
 
-## Contributing
-# Contributions are welcome! If you find any issues or have suggestions, feel free to open an issue or submit a pull request.
+# Contributing
+## Contributions are welcome! If you find any issues or have suggestions, feel free to open an issue or submit a pull request.
 
 - Fork the repository
 - Create a new branch (git checkout -b feature-branch)
