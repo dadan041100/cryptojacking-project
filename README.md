@@ -47,7 +47,7 @@ To run this project locally, you need the following installed:
    ```bash
    cd path/to/your/file
    git clone https://github.com/dadan041100/cryptojacking-project.git
-   cd cryptojacking-detection
+   cd cryptojacking-project
    ```
 2. **Create a Virtual Environment (Optional but Recommended) You can set up a Python virtual environment to isolate your dependencies:**
    ```bash
