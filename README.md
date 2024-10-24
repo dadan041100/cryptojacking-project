@@ -72,9 +72,39 @@ To run this project locally, you need the following installed:
    ```bash
    https://127.0.0.1:5000
    ```
+### To Simulate sample_morpheus.py on your device: 
+1. **Install PyTorch and each dependency**
+   - This is a sample malware that simulates the attack for CPU, RAM, and GPU through matrix concurrent multiplication.
+   - To run it locally, you must install PyTorch and its dependencies.
+   - Run this pip command on your terminal **(as an admin)**:
+   ```bash
+   pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
+   ```
+   - Make sure you have Python 3.6 or later versions installed on your device, see **Project Setup** section for step-by-step installation.
+2. **Run the Project**
+   Assuming you cloned my repository, go to the file directory of the project.
+   Copy the file path
+   Open terminal
+   **Run the command:**
+   ```bash
+   cd path/to/your/file
+   python app.py
+   ```
+   Then navigate to ```https://127.0.0.1:5000```
+3. **Run sample_morpheus.py:**
+   To run the sample malware, you need a separate terminal
+   Open another terminal **(as an admin)**
+   **Run the command:**
+   ```bash
+   cd path/to/your/file
+   python sample_morpheus.py
+   ```
+   Then you can monitor the charts on the project if the sample malware is working as expected.
 
-# Contributing
-## Contributions are welcome! If you find any issues or have suggestions, feel free to open an issue or submit a pull request.
+## NOTE: You may configure the duration and number of concurrent operations of sample_morpheus.py to your liking. 
+
+## Contributing
+# Contributions are welcome! If you find any issues or have suggestions, feel free to open an issue or submit a pull request.
 
 - Fork the repository
 - Create a new branch (git checkout -b feature-branch)
