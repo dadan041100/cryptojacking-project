@@ -82,9 +82,9 @@ To run this project locally, you need the following installed:
    ```
    - Make sure you have Python 3.6 or later versions installed on your device, see **Project Setup** section for step-by-step installation.
 2. **Run the Project**
-   Assuming you cloned my repository, go to the file directory of the project.
-   Copy the file path
-   Open terminal
+   - Assuming you cloned my repository, go to the file directory of the project.
+   - Copy the file path
+   - Open terminal
    **Run the command:**
    ```bash
    cd path/to/your/file
@@ -92,8 +92,8 @@ To run this project locally, you need the following installed:
    ```
    Then navigate to ```https://127.0.0.1:5000```
 3. **Run sample_morpheus.py:**
-   To run the sample malware, you need a separate terminal
-   Open another terminal **(as an admin)**
+   - To run the sample malware, you need a separate terminal
+   - Open another terminal **(as an admin)**
    **Run the command:**
    ```bash
    cd path/to/your/file
