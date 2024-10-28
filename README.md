@@ -6,6 +6,7 @@ A **Cryptojacking Detection System** built with Python Flask that monitors your 
 - **Real-time CPU Monitoring**: Display the current usage of CPU cores, number of sockets, and processors.
 - **Quadrant Layout Dashboard**: A clean interface that presents core usage charts, with each chart organized in a quadrant layout.
 - **Cryptojacking Scanning**: Detects cryptojacking by scanning system activities for unusual usage spikes.
+- **Ad-Blocker with Script Detector**: Detects cryptojacking scripts on the websites that you might think it's sketchy.
 - **Task Manager-like UI**: The front end is inspired by the **Windows 11 Task Manager** for ease of use.
 - **Separation of Concerns**: The JavaScript and CSS files are separated for better organization and readability.
 
