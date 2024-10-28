@@ -15,6 +15,7 @@
             <ul>
                 <li><a href="{{ url_for('index') }}">Dashboard</a></li>
                 <li><a href="{{ url_for('current_applications') }}">Current Applications</a></li>
+                <li><a href="{{ url_for('adblocker') }}">Ad Blocker and Script Detector</a></li>
                 <li><button id="scan-button" onclick="scanDevice()">Scan Device</button></li>
             </ul>
         </nav>
@@ -29,7 +30,6 @@
             <div class="stats-container">
                 <div class="stats-column">
                     <p>CPU Usage: <span id="cpuUsage">Loading...</span>%</p>
-                    <p>CPU Core 0 Usage: <span id="cpuCore0Usage">Loading...</span>%</p>
                     <p>GPU Usage: <span id="gpuUsage">Loading...</span>%</p>
                     <p>RAM Usage: <span id="ramUsage">Loading...</span>%</p>
                     <p>Logical Processors: <span id="logicalProcessors">Loading...</span></p>
@@ -40,15 +40,9 @@
                     <p>Network Received: <span id="networkRecv">Loading...</span> bytes</p>
                     <p>Disk I/O Read: <span id="diskRead">Loading...</span> bytes</p>
                     <p>Disk I/O Write: <span id="diskWrite">Loading...</span> bytes</p>
+                    <p>CPU Core 0 Usage: <span id="cpuCore0Usage">Loading...</span>%</p>
                 </div>
             </div>
-        </div>
-
-        <div>
-            <h3>Alerts:</h3>
-            <ul id="alerts">
-                <li>No alerts at this time</li>
-            </ul>
         </div>
 
         <div class="charts-container">

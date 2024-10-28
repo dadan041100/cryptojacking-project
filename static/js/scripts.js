@@ -218,6 +218,7 @@ const fetchStats = async () =>
         const data = await response.json();
 
         document.getElementById('cpuUsage').textContent = data.cpu_usage;
+        document.getElementById("cpuCore0Usage").textContent = data.cpu_core_0_usage; 
         document.getElementById('gpuUsage').textContent = data.gpu_usage;
         document.getElementById('ramUsage').textContent = data.ram_usage;
         document.getElementById('networkSent').textContent = data.network_sent;
@@ -226,7 +227,7 @@ const fetchStats = async () =>
         document.getElementById('diskWrite').textContent = data.disk_io_write;
         document.getElementById('logicalProcessors').textContent = data.cpu_info.logical_processors;  
         document.getElementById('physicalSockets').textContent = data.cpu_info.physical_sockets;      
-        document.getElementById("cpuCore0Usage").textContent = data.cpu_core_0_usage; 
+        
 
         updateCharts(data);
     } catch (error) {

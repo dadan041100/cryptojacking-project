@@ -105,6 +105,7 @@ def monitor_system_stats():
 def get_cpu_cores_usage():
     return psutil.cpu_percent(percpu=True)
 
+
 def get_cpu_info():
     logical_processors = psutil.cpu_count(logical=True)
     physical_sockets = psutil.cpu_count(logical=False)
@@ -195,6 +196,11 @@ def scan_device():
         'cpu_core_0_usage': cpu_core_0_usage  
     })
 
+@app.route('/adblocker')
+def adblocker():
+    return render_template('adblocker.html')
+
+
 if __name__ == '__main__':
     threading.Thread(target=monitor_system_stats, daemon=True).start()
-    app.run(debug=True)
+    app.run(debug=False)

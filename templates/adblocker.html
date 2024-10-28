@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ad Blocker and Cryptojacking Detection</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/adbscript.css') }}">
+    <script src="{{ url_for('static', filename='js/adblocker.js') }}" defer></script>
+ 
+</head>
+<body>
+    <header>
+        <h1>Ad Blocker & Cryptojacking Detection</h1>
+        <div class="hamburger" onclick="toggleSidebar()">☰</div>
+    </header>
+
+    <div class="sidebar">
+        <nav>
+            <ul>
+                <li><a href="{{ url_for('index') }}">Dashboard</a></li>
+                <li><a href="{{ url_for('current_applications') }}">Current Applications</a></li>
+                <!-- Add more links here if needed -->
+            </ul>
+        </nav>
+    </div>
+
+    <main class="content">
+        <div class="alert hidden" id="ad-alert">
+            <p>⚠️ Cryptojacking or ad attempt blocked!</p>
+        </div>
+
+        <section id="test-area">
+            <h2>Test Area</h2>
+            <p>Click the button below to test ad-blocking behavior.</p>
+            <button onclick="testBlockedDomain()">Attempt to Load Blocked Content</button>
+        </section>
+        
+        <section id="about">
+            <h2>About</h2>
+            <p>This application detects attempts to load unwanted ads and cryptojacking scripts.</p>
+        </section>
+    </main>
+
+    <footer>
+        <p>© INFOSEC SS221</p>
+    </footer>
+</body>
+</html>
