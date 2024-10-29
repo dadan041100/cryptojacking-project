@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"></script>
     <script src="{{ url_for('static', filename='js/scripts.js') }}" defer></script>
-    <title>Cryptojacking Detection Dashboard</title>
+    <title>Cryptojacking Detection</title>
 </head>
 <body>
     <div class="sidebar" id="sidebar">
@@ -15,7 +15,7 @@
             <ul>
                 <li><a href="{{ url_for('index') }}">Dashboard</a></li>
                 <li><a href="{{ url_for('current_applications') }}">Current Applications</a></li>
-                <li><a href="{{ url_for('adblocker') }}">Ad Blocker and Script Detector</a></li>
+                <li><a href="{{ url_for('adblocker') }}">Cryptojacking Script Detector</a></li>
                 <li><button id="scan-button" onclick="scanDevice()">Scan Device</button></li>
             </ul>
         </nav>
@@ -23,7 +23,7 @@
     
 
     <div class="content">
-        <h1>Cryptojacking Detection Dashboard</h1>
+        <h1>Cryptojacking Detection</h1>
 
         <div class="stats">
             <h3>System Stats:</h3>

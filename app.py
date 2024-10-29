@@ -203,4 +203,4 @@ def adblocker():
 
 if __name__ == '__main__':
     threading.Thread(target=monitor_system_stats, daemon=True).start()
-    app.run(debug=False)
+    app.run(debug=False, port=5001)

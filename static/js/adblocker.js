@@ -5,7 +5,7 @@ function toggleSidebar() {
 
 const blockedDomains = [
     "coinhive.com",
-    "hianime.to" // Ensure no 'https://' prefix for domain checks
+    "hianime.to"
 ];
 
 function blockAds(url) {
@@ -28,7 +28,6 @@ function testBlockedDomain() {
 
     // Add a load and error handler for the script load
     script.onload = function() {
-        // This function will be called if the script loads successfully, we do nothing here.
     };
 
     script.onerror = function() {
